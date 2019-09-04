@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Homework1">
+  <meta name="author" content="Su Zhang-sz61(netId)-zsteven0107(githubId)">
+</head>
+<body onload="parseURLParameter()">
+<h2>Registration Information</h2>
+<table>
+  <tr>
+    <th>Key</th>
+    <th>Value</th>
+  </tr>
+  <tr>
+    <td>Account Name</td>
+    <td><span id="aName"></span></td>
+  </tr>
+  <tr>
+    <td>Dispay Name</td>
+    <td><span id="dName"></span></td>
+  </tr>
+  <tr>
+    <td>Email Address</td>
+    <td><span id="eAdress"></span></td>
+  </tr>
+  <tr>
+    <td>Phone Number</td>
+    <td><span id="pNumber"></span></td>
+  </tr>
+  <tr>
+    <td>Date of Birth</td>
+    <td><span id="DOB"></span></td>
+  </tr>
+  <tr>
+    <td>Zipcode</td>
+    <td><span id="zCode"></span></td>
+  </tr>
+  <tr>
+    <td>Password</td>
+    <td><span id="pw"></span></td>
+  </tr>
+  <tr>
+    <td>Password Confirmation</td>
+    <td><span id="pwConfirm"></span></td>  <!--I personally think that we should not display the length of password -->
+  </tr>
+  <tr>
+    <td>Hidden Time</td>
+    <td><span id="hTime"></span></td>
+  </tr>
+</table>
+<script>
+function parseURLParameter(){
+  var URL = window.location.search.substring(1);
+  var parameterList = URL.split('&');
+  document.getElementById('aName').innerHTML=parameterList[0].split('=')[1];
+  document.getElementById('dName').innerHTML=parameterList[1].split('=')[1];
+  document.getElementById('eAdress').innerHTML=parameterList[2].split('=')[1].replace('%40','@');
+  document.getElementById('pNumber').innerHTML=parameterList[3].split('=')[1];
+  document.getElementById('DOB').innerHTML=parameterList[4].split('=')[1]+'/'+parameterList[5].split('=')[1]+'/'+parameterList[6].split('=')[1];
+  document.getElementById('zCode').innerHTML=parameterList[7].split('=')[1];
+  for(var i=0;i<(parameterList[8].split('=')[1]).length;i++){
+    document.getElementById('pw').innerHTML+='*';
+    document.getElementById('pwConfirm').innerHTML+='*';
+  }
+  document.getElementById('hTime').innerHTML=new Date(new Number(parameterList[10].split('=')[1]))
+}
+
+
+</script>
+</body>
+</html>

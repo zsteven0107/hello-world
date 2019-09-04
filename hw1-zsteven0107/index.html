@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Homework1">
+  <meta name="author" content="Su Zhang-sz61(netId)-zsteven0107(githubId)">
+</head>
+
+<body  onload="timestamp()">
+
+<h2>Registration</h2>
+
+<form method="GET" action="formProcessor.html">
+  Account Name:<br>
+  <input type="text" name="account name" id="aName" required>
+  <br><br>
+  Display Name:<br>
+  <input type="text" name="display name" id="dName">
+  <br><br>
+  Email Address:<br>
+  <input type="text" name="email address" id="eAddress" required>
+  <br><br>
+  Phone Number:<br>
+  <input type="text" name="phone number" id="pNumber" required>
+  <br><br>
+  Date Of Birth:<br>
+  <input type="text" name="DOB" id="month" required>/
+  <input type="text" name="DOB" id="day" required>/
+  <input type="text" name="DOB" id="year" required>
+  <br><br>
+  Zipcode:<br>
+  <input type="text" name="zipcode" id="zCode" required>
+  <br><br>
+  Password:<br>
+  <input type="password" name="password" id="pw1" required>
+  <br><br>
+  Password Confirmation:<br>
+  <input type="password" name="password" id="pw2" required>
+  <br><br>
+  <input type="hidden" name="timestamp" id="tStamp">
+  <input type="submit" value="Submit" onclick="return validate()">
+  <input type="reset" value="Clear">
+</form>
+<script>
+function timestamp(){
+  var ts = document.getElementById("tStamp");
+  ts.value = Date.now();
+}
+function validate(){
+  var aName = document.getElementById("aName").value;
+  var dName = document.getElementById("dName").value;
+  var eAddress = document.getElementById("eAddress").value;
+  var pNumber = document.getElementById("pNumber").value;
+  var zcode = document.getElementById("zCode").value;
+  var pw1 = document.getElementById("pw1").value;
+  var pw2 = document.getElementById("pw2").value;
+
+  var birthMonth = document.getElementById("month").value;
+  var birthDay = document.getElementById("day").value;
+  var birthYear = document.getElementById("year").value;
+  curDate = new Date();
+  var curMonth = curDate.getMonth()+1;
+  var curDay = curDate.getDate();
+  var curYear = curDate.getFullYear();
+
+  if(aName.match('^[A-Za-z][A-Za-z0-9]{0,}$')==null){alert("Form of account name is wrong!");return false;}
+  if(dName.match('^[A-Za-z][A-Za-z0-9]{0,}$')==null){alert("Form of display name is wrong!");return false;}
+  if(eAddress.match('^[A-Za-z0-9_-]+@([A-Za-z0-9_-])+(\.[A-Za-z]{1,})$')==null){alert("Form of email address is wrong!");return false;}
+  if(pNumber.match('[0-9]{10}$')==null){alert("Form of phone number is wrong!");return false;}
+  if(zcode.match('^[1-9][0-9]{4}$')==null){alert("Form of zipcode is wrong!");return false;}
+  if(pw1!=pw2){alert("The passwords are different!");return false;}
+  if((curYear-birthYear<18)||(curYear-birthYear==18&&curMonth<birthMonth)
+  ||(curYear-birthYear==18&&curMonth==birthMonth&&curDay<birthDay)){alert("You cannot register!");return false;}
+}
+
+</script>
+</body>
+</html>
