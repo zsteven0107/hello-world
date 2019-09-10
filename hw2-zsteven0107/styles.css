@@ -1,0 +1,20 @@
+table, th, td {
+  border: 1px solid black;
+  width: 500px;
+}
+
+th {
+  background-color: #a23456;
+  color: white;
+  height: 100px;
+  text-align: center;
+  font-family: Georgia;
+}
+
+td {
+  height: 400px;
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 15px;
+}
+tr:nth-child(even) {background-color: rgb(200,200,200);}
